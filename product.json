@@ -1,0 +1,236 @@
+[
+  {
+    "id": 1,
+    "name": "Margherita Pizza",
+    "price": 450,
+    "tagline": "Classic & Simple, for the Pizza Purist",
+    "image": "https://media.istockphoto.com/id/686957124/photo/pizza-margherita.jpg?s=612x612&w=0&k=20&c=STQALvMIjcgXPIvpXXUXItAl05QtbmEUQ_PfwSato48=",
+    "nutrition": {
+      "calories": 300,
+      "protein": 12,
+      "carbohydrates": "36g",
+      "fat": "12g"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Cheeseburger",
+    "price": 100,
+    "tagline": "Juicy, Cheesy, and Irresistible",
+    "image": "https://www.sargento.com/assets/Uploads/Recipe/Image/burger_0.jpg",
+    "nutrition": {
+      "calories": 350,
+      "protein": 18,
+      "carbohydrates": "32g",
+      "fat": "20g"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Caesar Salad",
+    "price": 390,
+    "tagline": "Crisp Lettuce with Tangy Dressing",
+    "image": "https://www.allrecipes.com/thmb/mXZ0Tulwn3x9_YB_ZbkiTveDYFE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/229063-Classic-Restaurant-Caesar-Salad-ddmfs-4x3-231-89bafa5e54dd4a8c933cf2a5f9f12a6f.jpg",
+    "nutrition": {
+      "calories": 150,
+      "protein": 8,
+      "carbohydrates": "12g",
+      "fat": "9g"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Spaghetti Bolognese",
+    "price": 500,
+    "tagline": "Rich, Meaty Sauce on Perfect Pasta",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdmArDp7Tj_Lz9IZLiK4XjxAM9xutgCTpojw&s",
+    "nutrition": {
+      "calories": 450,
+      "protein": 22,
+      "carbohydrates": "55g",
+      "fat": "15g"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Sushi Platter",
+    "price": 800,
+    "tagline": "A Symphony of Freshness and Flavor",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTarw3kiN1sD9Zl9D-1yCEcgZaHjf-D4AbGVw&s",
+    "nutrition": {
+      "calories": 250,
+      "protein": 15,
+      "carbohydrates": "30g",
+      "fat": "5g"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Chicken Tacos",
+    "price": 890,
+    "tagline": "Tasty Tacos with a Zesty Kick",
+    "image": "https://bellyfull.net/wp-content/uploads/2023/08/Slow-Cooker-Shredded-Chicken-Tacos-blog-3-500x375.jpg",
+    "nutrition": {
+      "calories": 320,
+      "protein": 20,
+      "carbohydrates": "25g",
+      "fat": "12g"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Pad Thai",
+    "price": 580,
+    "tagline": "A Thai Classic Bursting with Flavor",
+    "image": "https://www.foodandwine.com/thmb/9Vb8WuiTba45J_7HEXV6M58bo2U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Shrimp-Pad-Thai-FT-RECIPE0324-3132ca704bc0457e836127dbda403368.jpg",
+    "nutrition": {
+      "calories": 400,
+      "protein": 16,
+      "carbohydrates": "50g",
+      "fat": "10g"
+    }
+  },
+  {
+    "id": 8,
+    "name": "BBQ Ribs",
+    "price": 900,
+    "tagline": "Fall-off-the-Bone, Smoky Goodness",
+    "image": "https://www.allrecipes.com/thmb/02fSeNJokCojqDPCZT2q0m_N2So=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/172967-sweet-smoked-pork-ribs-DDMFS-001-4x3-9d0c6ba003a145b9b6e872275135857d.jpg",
+    "nutrition": {
+      "calories": 500,
+      "protein": 30,
+      "carbohydrates": "10g",
+      "fat": "35g"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Vegan Burger",
+    "price": 80,
+    "tagline": "A Plant-Based Delight",
+    "image": "https://www.thespruceeats.com/thmb/e-lll-PpJ5F-MF4C57LYag3IAB8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-vegan-black-bean-veggie-burgers-3377008-hero-05-f7c0f0d9865e48b6be52a4c76ee22438.jpg",
+    "nutrition": {
+      "calories": 220,
+      "protein": 12,
+      "carbohydrates": "28g",
+      "fat": "8g"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Pancakes with Maple Syrup",
+    "price": 700,
+    "tagline": "Fluffy Stacks Drizzled with Sweetness",
+    "image": "https://tse1.mm.bing.net/th?id=OIP.ELqskTHU80DCYslvGGIkYwAAAA&pid=Api&P=0&h=180",
+    "nutrition": {
+      "calories": 350,
+      "protein": 6,
+      "carbohydrates": "60g",
+      "fat": "8g"
+    }
+  },
+  {
+    "id": 1733998150702,
+    "name": "Ice cream Sundae",
+    "price": "200",
+    "image": "https://images.aiscribbles.com/46a32d590bbb4372ab063e2b155f5c46.png?v=fcac0a",
+    "tagline": "Mouth watering",
+    "nutrition": {
+      "calories": "10",
+      "protein": "20",
+      "carbohydrates": "30",
+      "fat": "40"
+    }
+  },
+  {
+    "id": 1733998846979,
+    "name": "samosa",
+    "price": "20",
+    "image": "https://static.toiimg.com/thumb/61050397.cms?imgsize=246859&width=800&height=800",
+    "tagline": "tasty tasty ",
+    "nutrition": {
+      "calories": "10",
+      "protein": "20",
+      "carbohydrates": "30",
+      "fat": "40"
+    }
+  },
+  {
+    "id": 1734068353603,
+    "name": "aalo parantha",
+    "price": "35",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL0Zq6X0Ih5ODzljjrNF4CqOmXIDazdidGSA&s",
+    "tagline": "curd free",
+    "nutrition": {
+      "calories": "20",
+      "protein": "10",
+      "carbohydrates": "30",
+      "fat": "10"
+    }
+  },
+  {
+    "id": 1734069795408,
+    "name": "gobhi parantha",
+    "price": "35",
+    "image": "https://static.toiimg.com/thumb/53335308.cms?imgsize=266559&width=800&height=800",
+    "tagline": "yummy",
+    "nutrition": {
+      "calories": "10",
+      "protein": "20",
+      "carbohydrates": "30",
+      "fat": "40"
+    }
+  },
+  {
+    "id": 1734070378940,
+    "name": "Tandoori Chicken",
+    "price": "100",
+    "image": "https://static01.nyt.com/images/2024/05/16/multimedia/fs-tandoori-chicken-hmjq-copy-NL/fs-tandoori-chicken-hmjq-googleFourByThree.jpg",
+    "tagline": "Sizzling and spicy.",
+    "nutrition": {
+      "calories": "10",
+      "protein": "20",
+      "carbohydrates": "30",
+      "fat": "40"
+    }
+  },
+  {
+    "id": 1734070572383,
+    "name": "Butterscotch Ice cream shake",
+    "price": "80",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZQshRQl0gW7ImS6HS-yRwlfySVBCRSuGVA&s",
+    "tagline": "Scoop, Savor, Repeat: Our Ice Cream Can't be Beat",
+    "nutrition": {
+      "calories": "10",
+      "protein": "20",
+      "carbohydrates": "30",
+      "fat": "40"
+    }
+  },
+  {
+    "id": 1734073996252,
+    "name": "noodles",
+    "price": "170",
+    "image": "https://www.chilipeppermadness.com/wp-content/uploads/2023/06/Gochujang-Noodles-Recipe-SQ.jpg ",
+    "tagline": "spicy and tasty",
+    "nutrition": {
+      "calories": "40",
+      "protein": "2",
+      "carbohydrates": "34",
+      "fat": "56"
+    }
+  },
+  {
+    "id": 1734150947078,
+    "name": "momos",
+    "price": "190",
+    "image": "https://tse3.mm.bing.net/th?id=OIP.-pUQo6scBAvha9j8YITKegHaE8&pid=Api&P=0&h=180",
+    "tagline": "tasty",
+    "nutrition": {
+      "calories": "20",
+      "protein": "30",
+      "carbohydrates": "20",
+      "fat": "30"
+    }
+  }
+]
