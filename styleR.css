@@ -1,0 +1,338 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: url('https://images.pexels.com/photos/5108379/pexels-photo-5108379.jpeg?cs=srgb&dl=pexels-fan-crosby-1190014-5108379.jpg&fm=jpg');
+    background-color: #e8a41d;
+    margin: 0;
+    padding: 0;
+    
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    
+}
+
+.container {
+    display: flex;
+     /* Adjust between 0 (fully transparent) and 1 (fully opaque) */
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+     
+}
+
+.left-column, .right-column {
+    width: 48%;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+.review-form {
+    background-color: #ffffffb9;
+    border: 1px solid #ddd;
+   
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+.reviews-display {
+    background-color: #ffffffb9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.reviews-display:hover {
+    background-color: #7f8283;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    color: #000000;
+    font-size: 14px;
+}
+
+input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #333;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+button {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #1d272f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.review {
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.review:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.review:last-child {
+    border-bottom: none;
+}
+
+
+
+.star-rating .star {
+    display: inline-block;
+    font-family: "FontAwesome";
+    content: "\f005";
+}
+
+.star-rating .star.empty {
+    color: lightgray;
+}
+#header {
+    background: transparent;
+    color: #000000;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+#header .logo {
+    width: 80px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+
+#navbar a:hover {
+    color: #ef8605;
+}
+
+.active {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+#navbar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+}
+
+#navbar li {
+    margin: 0 20px;
+}
+
+#navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+
+
+
+
+footer {
+    background: #f9f6f6;
+    color: #000000;
+    padding: 60px 0;
+}
+
+footer .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+footer .col {
+    width: 20%;
+    margin: 20px 0;
+}
+
+footer .col h4 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+footer .col a {
+    color: #000000;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+}
+
+footer .col .icon i {
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+footer .col .install img {
+    width: 120px;
+    margin-right: 15px;
+}
+
+footer .copyright {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.scrollable-reviews {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.review-form:hover {
+    background-color: #83837f;
+}
+.star-rating .fas {
+    color: gold; /* Make the stars golden */
+    font-size: 20px; /* Adjust the size */
+    margin-right: 5px; /* Space between stars */
+}
+/* On hover, stars will turn yellow */
+.star-rating i:hover,
+.star-rating i:hover ~ i {
+    color: gold; /* Highlight the star with yellow on hover */
+}
+/* Container for the stars */
+.star-rating {
+    display: flex;
+    gap: 5px;
+}
+
+/* Default state (white outline) */
+.star-rating i {
+    font-size: 30px;
+    color: white; /* Outline color */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* On hover, stars will turn yellow */
+.star-rating i:hover,
+.star-rating i:hover ~ i {
+    color: yellow; /* Highlight the star with yellow on hover */
+}
+
+/* After a click, the stars up to the clicked one will become gold */
+.star-rating i.selected {
+    color: gold;
+}
+
+/* Fill the stars up to the clicked one */
+.star-rating i.filled {
+    color: gold;
+}
+
+/* Hover effect - apply your specific hover color */
+.star-rating:hover {
+    color: rgb(21, 20, 14); /* Change the color on hover (if needed) */
+}
+
+/* Styling for the active click effect */
+.star-rating i:active {
+    color: gold; /* Change to gold when clicked */
+}
+
+.star-rating .far {
+    color: #d3d3d3; /* Light grey for empty stars */
+    font-size: 20px; /* Match the size of full stars */
+    margin-right: 5px; /* Space between stars */
+}
+
+
+
+ /* Style the stars */
+ .stars {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 2rem;
+}
+
+.stars i {
+    color: gold; /* Default color for stars */
+    cursor: pointer;
+    border-color: #ddd;
+}
+
+.stars i.active,
+.stars i:hover {
+    color: gold; /* Golden color when active or hovered */
+}
+/* Golden color for stars in the review display column */
+/* Golden color for stars in the review display section */
+#reviewsContainer .review-star {
+    color: #FFD700 !important;  /* Golden color for stars */
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .left-column, .right-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #navbar li {
+        margin: 0 10px;
+    }
+}

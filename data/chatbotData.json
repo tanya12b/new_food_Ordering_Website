@@ -1,0 +1,308 @@
+[
+    {
+        "category": "Delivery",
+        "question": "What is the delivery cost?",
+        "answer": "Delivery cost depends on your location and the order amount. You can view the cost at checkout.",
+        "keywords": ["delivery", "cost", "fee", "charge"]
+    },
+    {
+        "category": "Payment",
+        "question": "Can I pay through PayPal?",
+        "answer": "Currently, we only accept payments via credit cards, debit cards, UPI, and cash on delivery.",
+        "keywords": ["pay", "paypal", "payment", "method"]
+    },
+    {
+        "category": "Discounts",
+        "question": "Can I use multiple discount coupons at once?",
+        "answer": "No, you can only apply one discount coupon per order.",
+        "keywords": ["multiple", "coupons", "discount", "apply"]
+    },
+    {
+        "category": "Account",
+        "question": "How do I change my account details?",
+        "answer": "To change your account details, log in, go to 'Account Settings,' and update your information.",
+        "keywords": ["change", "account", "details", "settings"]
+    },
+    {
+        "category": "Order",
+        "question": "How can I track my order?",
+        "answer": "You can track your order by visiting the 'Track Order' section on the app or website.",
+        "keywords": ["track", "order", "status"]
+    },
+    {
+        "category": "Delivery",
+        "question": "Do you deliver to my area?",
+        "answer": "We deliver to most areas. Enter your address at checkout to confirm if we deliver to your location.",
+        "keywords": ["deliver", "area", "location", "delivery"]
+    },
+    {
+        "category": "Payment",
+        "question": "Can I pay on delivery?",
+        "answer": "Yes, we offer cash on delivery as one of the payment options.",
+        "keywords": ["pay", "delivery", "cash", "payment"]
+    },
+    {
+        "category": "Discounts",
+        "question": "How can I get notified about new discounts?",
+        "answer": "You can sign up for our newsletter or enable notifications in the app to stay updated on new discounts.",
+        "keywords": ["notified", "new", "discounts", "notifications"]
+    },
+    {
+        "category": "Account",
+        "question": "How do I delete my account?",
+        "answer": "To delete your account, contact our support team via email or in the app's help section.",
+        "keywords": ["delete", "account", "remove", "support"]
+    },
+    {
+        "category": "Order",
+        "question": "Can I modify my order after placing it?",
+        "answer": "You can modify your order only before it's confirmed. Once confirmed, the order cannot be changed.",
+        "keywords": ["modify", "order", "change", "confirm"]
+    },
+    {
+        "category": "Delivery",
+        "question": "Can I schedule my delivery for a later time?",
+        "answer": "Yes, you can select a preferred delivery time during checkout, subject to availability.",
+        "keywords": ["schedule", "delivery", "time", "later"]
+    },
+    {
+        "category": "Payment",
+        "question": "Is there a transaction fee for online payments?",
+        "answer": "No, we do not charge any additional transaction fees for online payments.",
+        "keywords": ["transaction", "fee", "online", "payment"]
+    },
+    {
+        "category": "Discounts",
+        "question": "Are there any student discounts available?",
+        "answer": "Yes, we offer exclusive discounts for students. Sign up with your student email to get the benefits.",
+        "keywords": ["student", "discount", "offer", "exclusive"]
+    },
+    {
+        "category": "Account",
+        "question": "How can I update my email address?",
+        "answer": "You can update your email address by going to 'Account Settings' and changing it under 'Email.'",
+        "keywords": ["update", "email", "address", "account"]
+    },
+    {
+        "category": "Order",
+        "question": "What happens if my order is late?",
+        "answer": "If your order is delayed, we will notify you and offer a solution, such as a discount or free delivery.",
+        "keywords": ["order", "late", "delay", "solution"]
+    },
+    {
+        "category": "Order",
+        "question": "How can I cancel my order?",
+        "answer": "You can cancel your order within 10 minutes of placing it through the app or website.",
+        "keywords": ["cancel", "order", "cancel order"]
+    },
+    {
+        "category": "Payment",
+        "question": "What payment methods do you accept?",
+        "answer": "We accept credit/debit cards, digital wallets, and cash on delivery.",
+        "keywords": ["payment", "methods", "cash", "digital wallet", "credit card"]
+    },
+    {
+        "category": "Delivery",
+        "question": "How long will delivery take?",
+        "answer": "Delivery typically takes 30-45 minutes, depending on your location.",
+        "keywords": ["delivery", "time", "duration", "how long"]
+    },
+    {
+        "category": "Order",
+        "question": "Can I track my order?",
+        "answer": "Yes, you can track your order in real-time through our app or website.",
+        "keywords": ["track", "order", "real-time tracking"]
+    },
+    {
+        "category": "Account",
+        "question": "How do I reset my password?",
+        "answer": "Click on 'Forgot Password' on the login page and follow the instructions to reset it.",
+        "keywords": ["reset", "password", "forgot password"]
+    },
+    {
+        "category": "Refund",
+        "question": "What is your refund policy?",
+        "answer": "Refunds are processed within 5-7 business days if your order is canceled or unsatisfactory.",
+        "keywords": ["refund", "policy", "money back"]
+    },
+    {
+        "category": "Support",
+        "question": "How can I contact customer support?",
+        "answer": "You can reach us via chat, email, or call on our support page.",
+        "keywords": ["contact", "support", "customer service"]
+    },
+    {
+        "category": "Offers",
+        "question": "Do you have any ongoing discounts?",
+        "answer": "Check the 'Offers' section in our app or website for the latest discounts.",
+        "keywords": ["discount", "offers", "deals", "promotion"]
+    },
+    {
+        "category": "Delivery",
+        "question": "What if I received the wrong order?",
+        "answer": "If you receive the wrong order, contact us immediately, and we will arrange a replacement or refund.",
+        "keywords": ["wrong order", "incorrect", "replacement", "refund"]
+    },
+    {
+        "category": "Food",
+        "question": "Are there vegetarian options available?",
+        "answer": "Yes, we offer a variety of vegetarian dishes. Look for the 'Vegetarian' tag in the menu.",
+        "keywords": ["vegetarian", "options", "menu", "veg"]
+    },
+    {
+        "category": "Order",
+        "question": "How do I place an order?",
+        "answer": "Simply browse through the menu, select your items, and click 'Add to Cart'. Once you're ready, proceed to checkout to place your order.",
+        "keywords": ["order", "place", "menu", "cart"]
+    },
+    {
+        "category": "Delivery",
+        "question": "How long will it take to deliver my food?",
+        "answer": "Delivery times vary depending on your location, but typically range from 30 minutes to 1 hour. You can track your order in real-time through the app.",
+        "keywords": ["delivery", "time", "track", "order"]
+    },
+    {
+        "category": "Payment",
+        "question": "Can I pay using my wallet?",
+        "answer": "Yes, we accept payments through various wallets like Google Pay, Paytm, and PhonePe, in addition to credit/debit cards and UPI.",
+        "keywords": ["wallet", "payment", "method", "google pay", "paytm"]
+    },
+    {
+        "category": "Cancellation",
+        "question": "Can I cancel my order after placing it?",
+        "answer": "You can cancel your order within 5 minutes of placing it. After that, the order is considered confirmed, and cancellation is not possible.",
+        "keywords": ["cancel", "order", "change", "confirmation"]
+    },
+    {
+        "category": "Account",
+        "question": "Do I need to create an account to order food?",
+        "answer": "You can place an order as a guest, but creating an account will allow you to track your orders, save your preferences, and access exclusive offers.",
+        "keywords": ["account", "guest", "order", "save", "offers"]
+    },
+    {
+        "category": "Offers",
+        "question": "Are there any discounts available for first-time users?",
+        "answer": "Yes, we offer a 20% discount for first-time users. Simply sign up to claim the discount on your first order.",
+        "keywords": ["discount", "first-time", "offer", "signup"]
+    },
+    {
+        "category": "Menu",
+        "question": "Can I customize my order?",
+        "answer": "Yes, you can customize your order by adding or removing ingredients in the 'customize' section when selecting your items.",
+        "keywords": ["customize", "order", "ingredients", "menu"]
+    },
+    {
+        "category": "Feedback",
+        "question": "How can I provide feedback on my order?",
+        "answer": "You can rate your order and provide feedback directly in the app after delivery. We value your feedback to improve our services.",
+        "keywords": ["feedback", "rate", "order", "review"]
+    },
+    {
+        "category": "Support",
+        "question": "What should I do if my order is delayed?",
+        "answer": "If your order is delayed, please contact our customer support team via the app or call our helpline. We will assist you promptly.",
+        "keywords": ["delayed", "support", "order", "help"]
+    },
+    {
+        "category": "Order",
+        "question": "How do I place an order?",
+        "answer": "To place an order, simply select your items from the menu, add them to your cart, and proceed to checkout to complete the order.",
+        "keywords": ["order", "place", "menu", "cart"]
+    },
+    {
+        "category": "Delivery",
+        "question": "How long will it take to deliver my food?",
+        "answer": "The delivery time typically ranges from 30 minutes to 1 hour, depending on your location and the restaurant's processing time.",
+        "keywords": ["delivery", "time", "order", "location"]
+    },
+    {
+        "category": "Payment",
+        "question": "What payment methods are available?",
+        "answer": "We accept payments via credit cards, debit cards, UPI, wallets like Google Pay, Paytm, and cash on delivery.",
+        "keywords": ["payment", "credit card", "debit card", "UPI", "wallet"]
+    },
+    {
+        "category": "Account",
+        "question": "Do I need to create an account to order?",
+        "answer": "No, you can place an order as a guest. However, creating an account will allow you to save your preferences, track your orders, and receive special offers.",
+        "keywords": ["account", "guest", "order", "signup"]
+    },
+    {
+        "category": "Cancellation",
+        "question": "Can I cancel my order after placing it?",
+        "answer": "You can cancel your order within 5 minutes of placing it. After that, the cancellation option will be unavailable.",
+        "keywords": ["cancel", "order", "time limit"]
+    },
+    {
+        "category": "Offers",
+        "question": "Are there any discounts or offers available?",
+        "answer": "Yes, we regularly offer discounts and promo codes. You can check the 'Offers' section in the app for the latest deals.",
+        "keywords": ["discount", "offers", "promo code"]
+    },
+    {
+        "category": "Menu",
+        "question": "Can I customize my order?",
+        "answer": "Yes, most items on our menu can be customized. You can add or remove ingredients while placing your order.",
+        "keywords": ["customize", "order", "ingredients"]
+    },
+    {
+        "category": "Support",
+        "question": "How can I contact customer support?",
+        "answer": "You can reach our customer support team through the 'Help' section in the app or by calling our helpline number.",
+        "keywords": ["support", "help", "contact"]
+    },
+    {
+        "category": "Tracking",
+        "question": "How can I track my order?",
+        "answer": "Once your order is confirmed, you will be able to track its status in real-time through the 'Order Status' section in the app.",
+        "keywords": ["track", "order", "status"]
+    },
+    {
+        "category": "Refund",
+        "question": "What should I do if I have an issue with my order?",
+        "answer": "If there is an issue with your order, please contact customer support, and we will help resolve the problem. In some cases, a refund may be provided.",
+        "keywords": ["refund", "issue", "order", "support"]
+    },
+    {
+        "category": "Greeting",
+        "question": "Hi, how can I assist you today?",
+        "answer": "Hello! How can I assist you? Let me know how I can help.",
+        "keywords": ["hiiiiiiiii", "assist", "help", "support", "helllllo","hello","hi"]
+    },
+    {
+        "category": "Greeting",
+        "question": "What can I do for you today?",
+        "answer": "I'm here to help! Let me know how I can assist you today.",
+        "keywords": ["help", "support", "assist", "today", "what can I do"]
+    },
+    {
+        "category": "Greeting",
+        "question": "Is there something you need help with?",
+        "answer": "Let me know if you have any questions or need assistance.",
+        "keywords": ["need", "help", "assist", "support", "questions"]
+    },
+    {
+        "category": "Greeting",
+        "question": "How can I be of service?",
+        "answer": "I'm here to provide support and assistance. Feel free to ask anything!",
+        "keywords": ["service", "support", "help", "assist", "be of service"]
+    },
+    {
+        "category": "Greeting",
+        "question": "Do you have any questions for me?",
+        "answer": "Please ask your questions, and I'll do my best to help!",
+        "keywords": ["questions", "ask", "help", "assist", "support"]
+    },
+    {
+        "category": "Greeting",
+        "question": "What do you need assistance with?",
+        "answer": "Feel free to share your concerns or queries. I’m here to help!",
+        "keywords": ["assistance", "help", "queries", "concerns", "support"]
+    },
+    {
+        "category": "Greeting",
+        "question": "Can I help you with something?",
+        "answer": "Let me know what you need, and I'll provide the necessary assistance.",
+        "keywords": ["help", "assist", "something", "support", "need"]
+    }
+]

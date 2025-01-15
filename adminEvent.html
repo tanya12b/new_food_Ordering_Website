@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e67e22;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        #events-list {
+            padding: 20px;
+        }
+        .event {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .event button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .event button:hover {
+            background-color: #c0392b;
+        }
+        form {
+            margin: 20px;
+        }
+        form input, form button {
+            padding: 10px;
+            margin: 5px;
+        }
+        form button {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+        }
+        .redirect {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .redirect button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .redirect button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel: Manage Events</h1>
+    </header>
+
+    <form id="add-event-form">
+        <label for="event-name">Event Name:</label>
+        <input type="text" id="event-name" name="name" required>
+
+        <label for="event-date">Event Date:</label>
+        <input type="date" id="event-date" name="date" required>
+
+        <button type="submit">Add Event</button>
+    </form>
+
+    <div id="events-list">
+        <h2>Events</h2>
+        <!-- Event list will be displayed here -->
+    </div>
+
+    <div class="redirect">
+        <button onclick="window.location.href='events.html'">Go to Events Page</button>
+    </div>
+
+    <script>
+        // Restrict date picker to future dates
+        const eventDateInput = document.getElementById('event-date');
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0]; // Get YYYY-MM-DD format
+        eventDateInput.setAttribute('min', formattedDate);
+
+        // Load events on page load
+        window.onload = function () {
+            fetch('/events')
+                .then(response => response.json())
+                .then(events => {
+                    const eventsList = document.getElementById('events-list');
+                    events.forEach(event => {
+                        addEventToList(event);
+                    });
+                });
+        };
+
+        // Add event to the list dynamically
+        function addEventToList(event) {
+            const eventsList = document.getElementById('events-list');
+            const eventElement = document.createElement('div');
+            eventElement.classList.add('event');
+            eventElement.innerHTML = `
+                <span>${event.name} - ${event.date}</span>
+                <button onclick="removeEvent('${event.id}')">Remove</button>
+            `;
+            eventsList.appendChild(eventElement);
+        }
+
+        // Admin Panel: Add event logic
+        const form = document.getElementById('add-event-form');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const eventName = document.getElementById('event-name').value;
+            const eventDate = document.getElementById('event-date').value;
+
+            const adminCredentials = {
+                username: 'admin',
+                password: 'admin123'
+            };
+
+            fetch('/admin/add-event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: eventName, date: eventDate, ...adminCredentials })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        addEventToList({ name: eventName, date: eventDate, id: data.id });
+                        form.reset();
+                    }
+                });
+        });
+
+        // Remove event logic
+        function removeEvent(eventId) {
+            const adminCredentials = {
+                username: 'admin',
+                password: 'admin123'
+            };
+
+            fetch(`/admin/remove-event/${eventId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(adminCredentials)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        // Remove event from DOM
+                        const eventElement = document.querySelector(`.event button[onclick="removeEvent('${eventId}')"]`).parentElement;
+                        eventElement.remove();
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

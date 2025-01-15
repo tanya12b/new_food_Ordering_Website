@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlavorJet Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hh1 {
+            font-size: 5rem;
+            /* Adjust the size of the text */
+            font-family: Baskerville, serif;
+            /* Set the font */
+            color: #ffffff;
+            /* Text color */
+            text-align: center;
+            /* Center the text */
+            font-weight: bold;
+            /* Make the text bold */
+            margin: 0;
+            /* Remove default margin */
+            padding: 10px 0;
+            /* Add some padding for spacing */
+
+
+        }
+        .hh1:hover{
+            text-decoration: underline;
+        }
+        .hh2 {
+            font-size: 1.6rem;
+            font-family: 'Okra', Helvetica, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 100;
+            margin: 0;
+            padding: 10px 0;
+            position: relative;
+            display: inline-block;
+            animation: word-by-word 3s steps(10, end); /* Adjust the timing as needed */
+        }
+
+        @keyframes word-by-word {
+            to {
+                width: 100%; /* Make entire heading visible as a whole */
+            }
+        }
+        header {
+            color: rgb(255, 255, 255);
+            height: 440px;
+            /* Set header height explicitly */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            /* Ensures content doesn't overflow */
+        }
+
+        .headerImg {
+            z-index: -1;
+            /* Send image to the background behind text */
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            opacity: 1;
+            transition: 1.4s;
+
+
+        }
+
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        
+
+
+        .logo img {
+            height: 80px;
+            margin-right: 200%;
+        }
+
+        .nav {
+            display: flex;
+            gap: 15px;
+
+        }
+
+        .nav a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 22px;
+            margin-inline: 2%;
+            font-weight: lighter;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        #profile-section {
+            display: flex;
+            align-items: center;
+            color: white;
+            gap: 10px;
+
+        }
+
+        #profile-picture {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        #profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            
+        }
+
+        .upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            
+        }
+
+        #profile-picture:hover .upload-overlay {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .product h2 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product .price {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .product .coupon-price {
+            font-size: 14px;
+            color: green;
+            margin-bottom: 15px;
+        }
+
+        .product button {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #e68a00;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #f9f6f6;
+            color: #000000;
+            padding: 60px 0;
+        }
+
+        footer .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        footer .col {
+            width: 20%;
+            margin: 20px 0;
+        }
+
+        footer .col h4 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        footer .col a {
+            color: #000000;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+
+        footer .col .icon i {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        footer .col .install img {
+            width: 120px;
+            margin-right: 15px;
+        }
+
+        footer .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        #wishlist-section .wishlist-button {
+            text-decoration: none;
+            font-size: 40px;
+            /* Increase the size of the heart */
+            color: red;
+            /* Fill the heart with red */
+            cursor: pointer;
+
+            display: inline-block;
+            line-height: 1;
+            margin-left: 120px;
+        }
+
+    
+.top-right-buttons {
+            display: flex;
+            gap: 15px;
+        }
+#logout-button {
+    background: none; /* Remove default background */
+    border: none; /* Remove border */
+    color: inherit; /* Use the inherited text color */
+    font-size: 16px; /* Set font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin: 0; /* Adjust margins as needed */
+    padding: 0; /* Remove padding for a text-like appearance */
+    text-decoration: none; /* Ensure no underline or decoration */
+}
+
+#signup-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 70%;
+    
+    display: inline-flex; /* Allows the words to be on the same line */
+    align-items: center; /* Align vertically if necessary */
+    padding: 0; /* Remove padding for a text-like appearance */
+}
+
+
+#logout-button:hover {
+    text-decoration: underline;
+}
+#signup-button:hover {
+    text-decoration: underline;
+}
+
+.scratch-card-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#scratch-card-button {
+    background: transparent;
+    color: rgb(40, 3, 3);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    height: 100%;
+    fill: #555;
+    opacity: 0.1;
+}
+
+.scratch-card {
+    position: relative;
+    width: 200px;
+    height: 120px;
+    background-color: #f9f6f6;
+    background-image: url('https://i.pinimg.com/originals/10/4a/f8/104af85aaeb789450a7852d87595740b.png'); /* GIF URL */
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(26, 4, 4, 0.991);
+    overflow: hidden;
+    background-size: cover; /* Ensure the GIF covers the card */
+    background-position: center; /* Center the background image */
+}
+
+#scratch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.reveal-text {
+    font-family: fantasy;
+    font-size: 16px; /* Default smaller font size for the 'Dish of the Day' */
+    color: #090909;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 2;  /* Make sure it's on top of the GIF */
+    text-align: center;
+}
+
+#dish-text {
+    font-size: 16px; /* Smaller size for "Dish of the Day" text */
+    color: #090909;
+}
+
+#dish-name {
+    font-size: 36px; /* Larger font size for the dish name */
+    font-weight: bold;
+    color: #FF6347; /* Tomato color for the dish name */
+}
+
+.scratch-card.revealed #reveal-text {
+    display: block;
+}
+
+.scratch-card.revealed {
+    background-size: cover; /* Make sure GIF covers the card */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the GIF */
+}
+
+.scratch-card.revealed #scratch-canvas {
+    display: none;
+}
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png" alt="header"
+                class="headerImg">
+            <div class="logo">
+                <img src="image/logo.png" alt="FlavorJet Logo">
+            </div>
+            <nav class="nav">
+                <a class="active" href="homepage.html"><u>Home</u></a>
+                <a href="cart.html">Menu</a>
+                <a href="events.html">Events</a>
+                <a href="blog.html">Blogs</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="chatbot.html">Help</a>
+                <a href="quiz.html">Quiz</a>
+            </nav>
+            <div id="wishlist-section">
+                <!-- Wishlist heart button -->
+                <a href="wishlist.html" id="navbar-wishlist" class="wishlist-button">
+                    <span class="heart">&#9829;</span> <!-- Unicode for filled heart -->
+                </a>
+            </div>
+            <div id="profile-section">
+                <div id="profile-picture" class="profile-pic-container">
+                    <img id="profile-img" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Profile Picture">
+                    <div class="upload-overlay" onclick="document.getElementById('upload-img').click()">
+                        <span class="upload-text">Change Photo</span>
+                        <input type="file" id="upload-img" style="display: none;" accept="image/*" onchange="updateProfileImage(event)">
+                    </div>
+                    <div id="user-name">
+                        <p>Welcome, <span id="username-placeholder">Guest</span></p>
+                    </div>
+                   
+                </div>
+            </div>
+             
+
+            <div class="top-right-buttons">
+                <!-- Remove Profile Button -->
+                <button id="remove-profile-btn" onclick="removeProfileImage()">Remove Profile</button>
+                <button id="signup-button" onclick="redirectToSignup()">SignUp</button>
+                <button id="logout-button" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <h1 class="hh1">FlavourJet</h1>
+        <h2 class="hh2">Discover the Best way to Order Food</h2>
+
+        <div class="scratch-card-container">
+            <div class="scratch-card">
+                <canvas id="scratch-canvas"></canvas>
+                <div id="reveal-text" class="reveal-text">
+                    <span id="dish-text">Dish of the Day: </span>
+                    <span id="dish-name"></span>
+                </div>
+            </div>
+            <button id="scratch-card-button"></button>
+        </div>
+        
+        
+        
+        
+
+    </header>
+
+
+
+    <div class="container">
+        <!-- Product Section -->
+        <div class="product-container">
+            <div class="product">
+                <img src="https://www.engelvoelkers.com/wp-content/uploads/2014/07/pizza-stock.jpg" alt="Product 1">
+                <h2>Pizza</h2>
+                <p class="price">₹220.00</p>
+                <p class="coupon-price">Save ₹200 (20% Off for New Users)</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(1, 'Pizza', 220.00)">
+                    <span class="heart" id="heart-1">&#9825;</span>
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="https://i0.wp.com/thenutritionadventure.com/wp-content/uploads/2017/07/PourHouseAmericanBurger.jpg?resize=5236%2C3490" alt="Product 2">
+                <h2>Burger</h2>
+                <p class="price">₹280.00</p>
+                <p class="coupon-price">Save ₹190 (20% Off for New Users)</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(2, 'Burger', 280.00)">
+                    <span class="heart" id="heart-2">&#9825;</span>
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="https://cdn.shopify.com/s/files/1/1345/2373/products/Penne_2048x@2x.jpg?v=1474050303" alt="Product 3">
+                <h2>Pasta</h2>
+                <p class="price">₹190.00</p>
+                <p class="coupon-price">Save ₹250 (20% Off for New Users)</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(3, 'Pasta', 190.00)">
+                    <span class="heart" id="heart-3">&#9825;</span>
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="https://www.eatbetter.de/sites/eatbetter.de/files/styles/full_width_tablet_4_3/public/2022-08/vegetarisches_sushi_1.jpg?h=4521fff0&itok=E2GGkUuE" alt="Product 4">
+                <h2>Sushi</h2>
+                <p class="price">₹250.00</p>
+                <p class="coupon-price">Save ₹300 (20% Off for New Users)</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(4, 'Sushi', 250.00)">
+                    <span class="heart" id="heart-4">&#9825;</span>
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="https://www.maccallumhouse.com/blog/wp-content/uploads/2019/03/salad-horizontal.jpg" alt="Product 5">
+                <h2>Salad</h2>
+                <p class="price">₹170.00</p>
+                <p class="coupon-price">Save ₹140 (20% Off for New Users)</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(5, 'Salad', 170.00)">
+                    <span class="heart" id="heart-5">&#9825;</span>
+                </button>
+
+            </div>
+            <div class="product">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Sirloin_steak.JPG" alt="Product 6">
+                <h2>Steak</h2>
+                <p class="price">₹200.00</p>
+                <p class="coupon-price">Save ₹40 (20% Off for New Users)</p>
+                <button class="wishlist-btn" onclick="toggleWishlist(6, 'Steak',200.00)">
+                    <span class="heart" id="heart-6">&#9825;</span>
+                </button>
+
+            </div>
+            <!-- Add more products as needed -->
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="col">
+
+                <h4>Contact</h4>
+                <p><strong>Address: </strong> 562 Wellington Road, Street 32, San Francisco</p>
+                <p><strong>Phone:</strong> +01 2222 365/(+91) 01 2345 6789</p>
+                <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+                <div class="follow">
+                    <h4>Follow us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest-p"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="col">
+                <h4>My Account</h4>
+                <a href="#">Sign In</a>
+                <a href="#">View Cart</a>
+                <a href="#">My Wishlist</a>
+                <a href="#">Track My Order</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="col install">
+                <h4>Install App</h4>
+                <p>From App Store or Google Play</p>
+                <div class="row">
+                    <img src="image/app.jpg" alt="App Store">
+                    <img src="image/play.jpg" alt="Google Play">
+                </div>
+                <p>Secured Payment Gateways</p>
+                <img src="image/pay.png" alt="Payment Gateways">
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; <span id="currentYear"></span> All rights reserved | Made with <i class="fas fa-heart"></i> by
+                Team</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = {}; // Cart object to store products
+
+        // Function to add products to the cart
+        function addToCart(productId) {
+            if (cart[productId]) {
+                cart[productId].quantity++;
+            } else {
+                cart[productId] = { quantity: 1 }; // Add new product with quantity 1
+            }
+            updateCartDisplay();
+            alert('Product added to cart!');
+        }
+
+        // Function to update the cart display (currently logs to console)
+        function updateCartDisplay() {
+            console.log('Current Cart:', cart);
+        }
+
+        // Function to gift a coupon (currently just logs to console)
+        function giftCoupon(productId) {
+            console.log('Gifted coupon for product ID: ${productId}');
+            alert('Coupon gifted!');
+        }
+
+
+
+        // function for signup and logout 
+
+        function redirectToSignup() {
+            window.location.href = 'register.html'; // Replace with your signup page URL
+        }
+
+
+        // Function to clear the cart
+        function clearCart() {
+            for (const key in cart) {
+                delete cart[key]; // Remove each item from the cart
+            }
+            updateCartDisplay(); // Update the cart display after clearing
+        }
+
+
+
+
+
+        function updateProfileImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+
+        // When the image is loaded, set it as the profile picture
+        reader.onload = function (e) {
+            const profileImg = document.getElementById('profile-img');
+            profileImg.src = e.target.result;
+
+            // Save the image URL in localStorage
+            localStorage.setItem('profileImg', e.target.result);
+        };
+
+        // Read the image file as a data URL
+        reader.readAsDataURL(file);
+    }
+}
+
+function loadProfileImage() {
+    const savedImage = localStorage.getItem('profileImg');
+    if (savedImage) {
+        const profileImg = document.getElementById('profile-img');
+        profileImg.src = savedImage;
+    }
+}
+
+function removeProfileImage() {
+    localStorage.removeItem('profileImg');
+    const profileImg = document.getElementById('profile-img');
+    profileImg.src = "https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg";
+}
+
+// Call this function when the page loads
+loadProfileImage();
+
+
+
+
+
+// Handle logout
+function handleLogout() {
+    fetch('/logout', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.msg === "Logout successful. All user data has been cleared.") {
+            // Clear token and profile image from local storage
+            localStorage.removeItem('token');  // Remove the user's authentication token
+            localStorage.removeItem('profileImg'); // Remove the profile image from localStorage
+
+            // Reset the profile image to default after logout
+            const profileImg = document.getElementById('profile-img');
+            profileImg.src = "https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg";
+
+            // Redirect user to the login page or homepage
+            window.location.href = '/login';
+        }
+    })
+    .catch(error => console.error('Error logging out:', error));
+}
+        // wishlist 
+
+
+        async function toggleWishlist(id, name, price) {
+            const heartIcon = document.getElementById(`heart-${id}`);
+            try {
+                // Check if the item exists in the backend
+                const response = await fetch('http://localhost:8008/wishlist');
+                const wishlist = await response.json();
+                const itemIndex = wishlist.findIndex(item => item.id === id);
+
+                if (itemIndex === -1) {
+                    // Add to backend
+                    await fetch('http://localhost:8008/wishlist', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id, name, price })
+                    });
+                    heartIcon.style.color = 'red'; // Turn heart red
+                } else {
+                    // Remove from backend
+                    await fetch(`http://localhost:8008/wishlist/${id}`, { method: 'DELETE' });
+                    heartIcon.style.color = ''; // Revert heart color
+                }
+            }
+            catch (error) {
+                console.error(`Error managing wishlist:`, error);
+            }
+        }
+
+        // Ensure hearts are correctly colored on page load
+        async function updateHeartsOnLoad() {
+            const response = await fetch('http://localhost:8008/wishlist');
+            const wishlist = await response.json();
+            wishlist.forEach(item => {
+                const heartIcon = document.getElementById(`heart-${item.id}`);
+                if (heartIcon) {
+                    heartIcon.style.color = 'red';
+                }
+            });
+        }
+        updateHeartsOnLoad();
+// List of possible dishes
+const dishes = ['Pizza', 'Burger', 'Sushi', 'Pasta', 'Steak', 'Salad'];
+
+let scratchCanvas, ctx, isScratching = false, scratchArea = 0, dishNameElement, celebrationContainer;
+
+function setupScratchCard() {
+    const scratchCardButton = document.getElementById('scratch-card-button');
+    const scratchCard = document.querySelector('.scratch-card');
+    dishNameElement = document.getElementById('reveal-text');
+    celebrationContainer = document.createElement('div');
+    celebrationContainer.classList.add('celebration');
+    
+    scratchCardButton.addEventListener('click', revealScratchCard);
+    
+    scratchCanvas = document.getElementById('scratch-canvas');
+    ctx = scratchCanvas.getContext('2d');
+    
+    // Set canvas size to match the card size
+    scratchCanvas.width = scratchCard.offsetWidth;
+    scratchCanvas.height = scratchCard.offsetHeight;
+
+    // Draw the scratch-off layer with brown color
+    ctx.fillStyle = 'black';  // Brown color for the scratch-off layer
+    ctx.fillRect(0, 0, scratchCanvas.width, scratchCanvas.height);
+    
+     // Add text "Scratch this card"
+     ctx.font = '20px Arial';
+    ctx.fillStyle = 'white'; // Text color
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Scratch this card', scratchCanvas.width / 2, scratchCanvas.height / 2); 
+    
+    // Add event listeners for scratching
+    scratchCanvas.addEventListener('mousedown', startScratching);
+    scratchCanvas.addEventListener('mousemove', scratch);
+    scratchCanvas.addEventListener('mouseup', stopScratching);
+    scratchCanvas.addEventListener('mouseout', stopScratching);
+}
+
+function startScratching(event) {
+    if (event.button === 0) {  // Left mouse button
+        isScratching = true;
+        scratch(event);
+    }
+}
+
+function scratch(event) {
+    if (!isScratching) return;
+
+    // Get mouse position
+    const rect = scratchCanvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Create a circular scratch area
+    const radius = 20;
+    ctx.globalCompositeOperation = 'destination-out'; // Makes the scratch transparent
+
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.fill();
+
+    // Calculate the scratched area
+    scratchArea += Math.PI * radius * radius;
+
+    // If enough of the card has been scratched off, reveal the dish
+    if (scratchArea > (scratchCanvas.width * scratchCanvas.height) * 0.3) {
+        revealScratchCard();
+    }
+}
+
+function stopScratching() {
+    isScratching = false;
+}
+
+function revealScratchCard() {
+    // Randomly select a dish from the list
+    const randomDish = dishes[Math.floor(Math.random() * dishes.length)];
+    
+    // Set the dish of the day
+    document.getElementById('dish-text').textContent = 'Dish of the Day:';
+    document.getElementById('dish-name').textContent = randomDish;
+
+    // Trigger the celebration effect
+    triggerCelebration();
+
+    // Show the reveal text and hide the canvas
+    document.querySelector('.scratch-card').classList.add('revealed');
+    document.querySelector('.canvas-container').style.display = 'none';
+}
+
+function triggerCelebration() {
+    // Create crackers (popper effect)
+    for (let i = 0; i < 20; i++) {
+        const cracker = document.createElement('div');
+        cracker.classList.add('cracker');
+        cracker.style.left = `${Math.random() * 100}%`;
+        cracker.style.animationDelay = `${Math.random() * 1}s`;
+        celebrationContainer.appendChild(cracker);
+    }
+
+    // Append celebration container to the card
+    document.querySelector('.scratch-card').appendChild(celebrationContainer);
+}
+
+window.onload = setupScratchCard;
+
+    </script>
+</body>
+
+</html>

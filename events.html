@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    background: url('https://www.sportlife.es/uploads/s1/95/77/46/4/cenar-despues-de-las-9-engorda.jpeg');
+}
+
+h1, h2 {
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0.7;
+
+}
+
+/* Header Styles */
+header {
+    background: transparent;
+    color: #fff;
+    padding: 10px 20px;
+    justify-content: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    height: 50px;
+}
+.nav{
+    display: flex;
+    
+    gap: 29px;
+}
+.nav a {
+    color: rgba(255,255,255);
+    text-decoration: none;
+    font-size: 22px;
+    margin-left: 30px;
+    font-weight: lighter;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input, select, button {
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #d35400;
+    box-shadow: 0 0 4px #e67e22;
+}
+
+button {
+    background: #e67e22;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #d35400;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+/* Footer Styles */
+
+
+footer .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        footer .col {
+            width: 20%;
+            margin: 20px 0;
+        }
+
+        footer .col h4 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        footer .col a {
+            color: #000000;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+
+        footer .col .icon i {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        footer .col .install img {
+            width: 120px;
+            margin-right: 15px;
+        }
+
+        footer .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }footer {
+            background: #f9f6f6;
+            color: #000000;
+            padding: 60px 0;
+        }
+/* Social Links */
+.social-links a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #fff;
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s;
+}
+
+.social-links a:hover {
+    background: #d35400;
+    color: #fff;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav {
+        margin-top: 10px;
+    }
+
+    .nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            
+            <nav class="nav">
+                <a href="homepage.html">Home</a>
+                <a href="cart.html">Menu</a>
+                
+                <a class="active" href="events.html"><u>Events</u></a>
+                <a href="blog.html">Blogs</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="chatbot.html">Help</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Event Registration</h1>
+
+        <div class="form-container">
+            <form id="registrationForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+
+                <label for="event">Select Event</label>
+                <select id="event" required>
+                    <option value="">--Select an Event--</option>
+                    <!-- Event options will be populated here -->
+                </select>
+
+                <button type="submit">Register</button>
+                <div id="message" class="error"></div>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h2>Cancel Registration</h2>
+            <label for="cancelEvent">Select Event to Cancel</label>
+            <select id="cancelEvent" required>
+                <option value="">--Select an Event--</option>
+                <!-- Event options will be populated here -->
+            </select>
+
+            <button id="cancelBtn">Cancel Registration</button>
+            <div id="cancelMessage" class="error"></div>
+        </div>
+    </div>
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="col">
+
+                <h4>Contact</h4>
+                <p><strong>Address: </strong> Chitkara University</p>
+                <p><strong>Phone:</strong> (+91) 01 2345 6789</p>
+                
+                <div class="follow">
+                    <h4>Follow us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest-p"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="col">
+                <h4>My Account</h4>
+                <a href="#">Sign In</a>
+                <a href="#">View Cart</a>
+                <a href="#">My Wishlist</a>
+                <a href="#">Track My Order</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="col install">
+                <h4>Install App</h4>
+                <p>From App Store or Google Play</p>
+                <div class="row">
+                    <img src="image/app.jpg" alt="App Store">
+                    <img src="image/play.jpg" alt="Google Play">
+                </div>
+                <p>Secured Payment Gateways</p>
+                <img src="image/pay.png" alt="Payment Gateways">
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; <span id="currentYear"></span> All rights reserved | Made with <i class="fas fa-heart"></i> by
+                Team</p>
+        </div>
+    </footer>
+    <script src="scriptk.js"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Blog Page</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+ 
+    <style>
+      body {
+            background-image: url('https://img.freepik.com/premium-photo/food-backgrounds_670382-177596.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            object-fit: fill; /* Preserve the entire image while filling the area */
+            image-rendering: high-quality; /* Render images with better quality */
+        }
+
+        #header-navbar {
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #header-navbar a {
+            font-size: 1.2em;
+            text-decoration: none;
+            margin: 0 15px;
+            
+        }
+
+        #page-header.blog-header {
+            background: none;
+            text-align: center;
+            padding: 20px 0;
+            color: white; /* Ensuring text color is visible against the background */
+        }
+
+        #page-header.blog-header h2 {
+            font-size: 2.5em;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        #blog {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 100%;
+            
+        }
+
+        .blog-post {
+            padding: 20px;
+            margin: 15px;
+            border-radius: 8px;
+            height: 700px;
+            width:400px; /* Adjusted width for better layout */
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent background for readability */
+        }
+
+        .blog-post:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .blog-content {
+            margin-top: 15px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .blog-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .blog-actions button {
+            background-color: #007BFF;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-actions button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background: #f9f6f6;
+            color: #000;
+            padding: 60px 0;
+        }
+
+        footer .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        footer .col {
+            width: 20%;
+            margin: 20px 0;
+        }
+
+        footer .col h4 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        footer .col a {
+            color: #000;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+
+        footer .col .icon i {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        footer .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background: #fff;
+            color: #e67e22;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #d35400;
+            color: #fff;
+        }
+
+        /* Ensure that the images inside blog posts appear in high quality and are responsive */
+        .blog-post img {
+    width: 340px;
+    height: 350px;
+    object-fit: fill; /* Preserve the entire image while filling the area */
+    image-rendering: high-quality; /* Render images with better quality */
+}
+
+        
+ Header Styles */
+#header {
+    color: #fff;
+    padding: 10px 20px;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* To ensure it stays on top of other content */
+    text-align: center; /* Center the text within the header */
+    margin-top: -10px;
+
+}
+
+#header .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content horizontally */
+    width: 100%; /* Ensure full width for alignment */
+}
+
+#header .logo img {
+    height: 50px;
+    margin-right: 20px; /* Space between logo and navigation links */
+}
+
+#header .nav {
+    
+    display: flex;
+    gap: 30px; /* Spacing between the links */
+    justify-content: center; /* Ensure nav items are centered */
+    flex-grow: 1; /* Allow the nav to grow and center properly */
+}
+
+#header .nav a {
+    color: #fff; /* White color for the links */
+    text-decoration:solid;
+    font-size: 22px;
+    transition: color 0.3s ease;
+}
+
+#header .nav a:hover {
+    color: #f39c12; /* Change color on hover (golden color) */
+}
+
+/* Additional Styling to ensure other content isn't hidden under the fixed header */
+body {
+    margin-top: 30px; /* Add margin to the top of the body content to avoid overlap */
+}
+
+/* Navigation Close Button Styling */
+
+
+    </style>
+</head>
+<body>
+    <section id="header">
+        <div class="header-content">
+          
+            <nav class="nav">
+                <a href="homepage.html">Home</a>
+                <a href="cart.html">Menu</a>
+                <a href="events.html">Events</a>
+                <a href="blog.html" class="active"><u>Blog</u></a>
+                <a href="reviews.html">Reviews</a>
+                <a href="chatbot.html">Help</a>
+            </nav>
+        </div>
+    </section>
+    
+    <section id="page-header" class="blog-header">
+        <h2>#Welcome to Our Culinary Blog!</h2>
+    </section>
+
+    <section id="blog">
+        <!-- Blog posts will be injected here by JavaScript -->
+    </section>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="col">
+                <h4>Contact</h4>
+                <p><strong>Address: </strong> Chitkara University</p>
+                <p><strong>Phone:</strong> (+91) 01 2345 6789</p>
+                <div class="follow">
+                    <h4>Follow us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest-p"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Delivery Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="col">
+                <h4>My Account</h4>
+                <a href="#">Sign In</a>
+                <a href="#">View Cart</a>
+                <a href="#">My Wishlist</a>
+                <a href="#">Track My Order</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="col install">
+                <h4>Install App</h4>
+                <p>From App Store or Google Play</p>
+                <div class="row">
+                    <img src="image/app.jpg" alt="App Store">
+                    <img src="image/play.jpg" alt="Google Play">
+                </div>
+                <p>Secured Payment Gateways</p>
+                <img src="image/pay.png" alt="Payment Gateways">
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; <span id="currentYear"></span> All rights reserved | Made with <i class="fas fa-heart"></i> by Team</p>
+        </div>
+    </footer>
+
+
+    
+    <script>
+        window.onload = function() {
+            // Retrieve blog posts from localStorage
+            const blogPosts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+            const savedBlogs = JSON.parse(localStorage.getItem('savedBlogs')) || [];
+            const blogSection = document.getElementById('blog');
+    
+            if (blogPosts.length === 0) {
+                blogSection.innerHTML = "<p>No blogs to display.</p>";
+            } else {
+                blogPosts.forEach((post, index) => {
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('blog-post');
+    
+                    const isSaved = savedBlogs.some(saved => saved.title === post.title);
+    
+                    // Blog content
+                    const postHTML = `
+                        <h3>${post.title}</h3>
+                        <p>${post.description}</p>
+                        <img src="${post.imageUrl}" alt="${post.title}">
+                        <p><a href="${post.videoLink}" target="_blank">Watch Video</a></p>
+                       
+                         
+                    `;
+                    postElement.innerHTML = postHTML;
+                    blogSection.appendChild(postElement);
+                });
+    
+                // Save functionality
+                document.querySelectorAll('.save-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const index = e.target.dataset.index;
+                        const blog = blogPosts[index];
+    
+                        if (savedBlogs.some(saved => saved.title === blog.title)) {
+                            // Remove from saved blogs
+                            const updatedSavedBlogs = savedBlogs.filter(saved => saved.title !== blog.title);
+                            localStorage.setItem('savedBlogs', JSON.stringify(updatedSavedBlogs));
+                            e.target.textContent = "Save";
+                        } else {
+                            // Add to saved blogs
+                            savedBlogs.push(blog);
+                            localStorage.setItem('savedBlogs', JSON.stringify(savedBlogs));
+                            e.target.textContent = "Saved";
+                        }
+                    });
+                });
+            }
+        };
+    </script>
+</body>
+</html>

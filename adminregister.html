@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Register</h2>
+
+        <!-- Form for Default Admin Login -->
+        <div id="defaultAdminLoginForm">
+            <h3>Please enter default admin credentials</h3>
+            <form id="defaultAdminLogin">
+                <label for="defaultAdminEmail">Email:</label>
+                <input type="email" id="defaultAdminEmail" required><br>
+
+                <label for="defaultAdminPassword">Password:</label>
+                <input type="password" id="defaultAdminPassword" required><br>
+
+                <button type="submit">Login</button>
+            </form>
+            <div id="errorMessage" style="color: red; display: none;">Incorrect credentials. Please try again.</div>
+        </div>
+
+        <!-- Admin Registration Form (hidden initially) -->
+        <div id="adminRegistrationForm" style="display:none;">
+            <h3>Create a New Admin Account</h3>
+            <form id="registerForm">
+                <label for="adminName">Name:</label>
+                <input type="text" id="adminName" required><br>
+
+                <label for="adminEmail">Email:</label>
+                <input type="email" id="adminEmail" required><br>
+
+                <label for="adminPassword">Password:</label>
+                <input type="password" id="adminPassword" required><br>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Default admin credentials
+        const DEFAULT_ADMIN = {
+            email: 'khushi@gmail.com',
+            password: 'Khushi@1'
+        };
+
+        // Handle default admin login
+        document.getElementById('defaultAdminLogin').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('defaultAdminEmail').value;
+            const password = document.getElementById('defaultAdminPassword').value;
+
+            // Check if credentials match
+            if (email === DEFAULT_ADMIN.email && password === DEFAULT_ADMIN.password) {
+                // Allow access to the registration form
+                document.getElementById('defaultAdminLoginForm').style.display = 'none';
+                document.getElementById('adminRegistrationForm').style.display = 'block';
+            } else {
+                // Show error message
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+
+        // Handle admin registration
+        document.getElementById('registerForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('adminName').value;
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:8008/adminregister', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+                alert(data.msg);
+
+                if (response.ok) {
+                    window.location.href = 'dashboard.html'; // Redirect to the dashboard after successful registration
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlavourJet Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Existing styles */
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: url("https://www.visitmesa.com/imager/s3_us-west-1_amazonaws_com/mesa-2019/images/12-West-Brewing_appetizer-buffet-Influencer-Event-May-2021_6779f590680632ee6ed1060f38937405.jpg");
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      margin: 30px 0;
+      font-size: 36px;
+    }
+
+    .menu-item {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+      max-width: 1000px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.03);
+    }
+
+    .item-info {
+      display: flex;
+      align-items: center;
+      width: 50%;
+    }
+
+    .item-info img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 30px;
+    }
+
+    .item-info h2 {
+      font-size: 24px;
+      margin: 0;
+      color: #333;
+    }
+
+    .item-info p {
+      font-size: 16px;
+      color: #777;
+      margin: 5px 0;
+    }
+
+    .nutrition-info {
+      font-size: 14px;
+      color: #777;
+    }
+
+    .quantity-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 30px;
+    }
+
+    .quantity-input {
+      width: 70px;
+      height: 40px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      text-align: center;
+      margin-right: 20px;
+    }
+
+    .add-to-cart {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background-color: #218838;
+    }
+
+    .added {
+      background-color: #007bff;
+      color: white;
+      cursor: not-allowed;
+    }
+
+    .added:after {
+      content: " ✓";
+    }
+
+    .proceed-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    .proceed-button:hover {
+      background-color: #0056b3;
+    }
+
+    .healthy-tag {
+      color: green;
+      font-weight: bold;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: transparent;
+      /* Remove background color */
+    }
+
+    .header-content {
+      max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    }
+
+    .nav {
+      display: flex;
+      gap: 39px;
+      
+      /* Increase the distance between links */
+    }
+
+    .nav a {
+      color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-size: 22px;
+          
+            font-weight: lighter;
+            justify-content: center;
+      
+      
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
+    
+
+
+    @media (max-width: 768px) {
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+      }
+
+      .item-info {
+        margin-bottom: 15px;
+      }
+
+      .quantity-box {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .add-to-cart {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+
+      <nav class="nav">
+        <a href="homepage.html">Home</a>
+        <a class="active" href="cart.html"><u>Menu</u></a>
+        <a href="events.html">Events</a>
+        <a href="blog.html">Blogs</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="chatbot.html">Help</a>
+      </nav>
+    </div>
+  </header>
+  
+  <h1>FlavourJet Menu</h1>
+  <div id="menu"></div>
+  
+  <a href="checkout.html" class="proceed-button">Go to Checkout</a>
+  <script>
+    let allProducts = [];
+
+    // Function to fetch products from the first URL
+    function getProductsFromUrl1() {
+      return fetch("http://localhost:8008/api/product")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((products) => {
+          console.log("Fetched products from URL 1:", products);
+          return products;
+        })
+        .catch((error) => {
+          console.error("Error fetching products from URL 1:", error);
+          return []; // Return an empty array in case of error
+        });
+    }
+
+    // Function to fetch products from the second URL
+    function getProductsFromUrl2() {
+      return fetch("http://localhost:8008/api/newproduct")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((products) => {
+          console.log("Fetched products from URL 2:", products); // Check the fetched data
+          return products; // Return products fetched from URL 2
+        })
+        .catch((error) => {
+          console.error("Error fetching products from URL 2:", error);
+          return []; // Return an empty array in case of error
+        });
+    }
+
+    // Function to combine products from both URLs
+    function combineProducts() {
+      Promise.all([getProductsFromUrl1(), getProductsFromUrl2()])
+        .then(([products1, products2]) => {
+          // Combine the two arrays into one
+          allProducts = [...products1];
+          localStorage.setItem("allProducts", JSON.stringify(allProducts));
+          displayMenu(); // Call displayMenu after combining the products
+        })
+        .catch((error) => {
+          console.error("Error combining products:", error);
+        });
+    }
+    console.log(allProducts);
+
+    // Function to display menu items
+    function displayMenu() {
+      const menuDiv = document.getElementById("menu");
+      menuDiv.innerHTML = "";
+
+      if (allProducts.length === 0) {
+        menuDiv.innerHTML = "<p>No products available</p>";
+        return;
+      }
+
+      allProducts.forEach((product) => {
+        const isHealthy = product.nutrition.protein > 20;
+        const healthyTag = isHealthy
+          ? `<span class="healthy-tag">🌟 Healthy</span>`
+          : "";
+
+        const productDiv = document.createElement("div");
+        productDiv.classList.add("menu-item");
+        productDiv.innerHTML = `
+                    <div class="item-info">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div>
+                            <h2>${product.name} ${healthyTag}</h2>
+                            <p>${product.tagline}</p>
+                            <div class="nutrition-info">
+                                <strong>Nutrition:</strong>
+                                <p>Calories: ${product.nutrition.calories}</p>
+                                <p>Protein: ${product.nutrition.protein}</p>
+                                <p>Carbohydrates: ${product.nutrition.carbohydrates}</p>
+                                <p>Fats: ${product.nutrition.fat}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quantity-box">
+                        <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}">
+                    </div>
+                    <div>
+                        <p>₹${product.price}</p>
+                        <button class="add-to-cart" id="add-to-cart-${product.id}" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                `;
+        menuDiv.appendChild(productDiv);
+      });
+    }
+
+    // Function to add items to the cart
+    function addToCart(productId) {
+      const quantity = parseInt(
+        document.getElementById(`quantity-${productId}`).value
+      );
+
+      // Define the two API URLs
+      const apiCartAddUrl = "http://localhost:8008/api/cart/add";
+      const adminAddMenuItemUrl = "http://localhost:8008/api/cart/addkhana";
+      // Prepare the payload
+      const payload = JSON.stringify({ productId, quantity });
+
+      // Send requests to both APIs
+      const addToCartRequest = fetch(apiCartAddUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: payload,
+      });
+
+      const addMenuItemRequest = fetch(adminAddMenuItemUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: payload,
+      });
+
+      // Handle both requests
+      Promise.all([addToCartRequest, addMenuItemRequest])
+        .then((responses) => {
+          // Check if any response failed
+          responses.forEach((response) => {
+            if (!response.ok) {
+              throw new Error(`Failed request: ${response.url}`);
+            }
+          });
+          return Promise.all(responses.map((response) => response.json()));
+        })
+        .then((data) => {
+          console.log("Item added to cart and menu:", data);
+
+          // Update the UI
+          const addToCartButton = document.getElementById(
+            `add-to-cart-${productId}`
+          );
+          addToCartButton.classList.add("added");
+          addToCartButton.disabled = true;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+
+    // Initialize the page
+    function init() {
+      combineProducts(); // Fetch and combine products from both URLs
+    }
+
+    window.onload = init; // Call init on page load
+  </script>
+</body>
+
+</html>

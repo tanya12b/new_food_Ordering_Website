@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Personality Quiz</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: url(https://wallpaperaccess.com/full/112605.jpg);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .quiz-container {
+      background-color: rgba(255, 174, 0, 0.932);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 500px;
+      text-align: center;
+      position: absolute;
+      overflow: hidden;
+      animation: slideIn 1s ease-out;
+      height: 600px;
+      font-family: 'https://www.fontspace.com/just-sugar-font-f113931';
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #333;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      
+    }
+
+    .option {
+      background-color: #e8d6bb;
+      color: black;
+      border: none;
+      border-radius: 12px;
+      padding: 18px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s ease;
+      width: 100%;
+    }
+
+    .option:hover {
+      background-color: #e53d30;
+      transform: translateY(-5px);
+    }
+
+    .option:active {
+      transform: translateY(0);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Result Page Styling */
+    #result {
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out forwards;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    #result-text {
+      font-size: 1.6rem;
+      color: #333;
+      font-weight: bold;
+      animation: fadeInUp 1s ease-in-out forwards;
+      max-width: 90%;
+    }
+
+    #teddy-bear {
+      width: 240px;
+      height: 240px;
+      animation: teddyBearPop 1s ease forwards;
+      max-width: 100%;
+    }
+
+    #teddy-bear img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Boom Animation */
+    @keyframes boom {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    .boom-effect {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.7), transparent);
+      border-radius: 50%;
+      animation: boom 1s ease-out forwards;
+      z-index: -1;
+    }
+
+    /* Crackers Animation */
+    .cracker {
+      position: absolute;
+      bottom: 10%;
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      animation: crack 1.5s ease-out infinite;
+      background-image: url('https://i.pinimg.com/originals/61/e0/da/61e0da3de0100cd019d7672c9bfc0ed0.gif');
+      background-size: cover;
+    }
+
+    .cracker:nth-child(odd) {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes crack {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Result Button Styling */
+    #restart-btn {
+      background-color: #32cd32;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 18px 36px;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: background-color 0.3s;
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out 1s forwards;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    #restart-btn:hover {
+      background-color: #228b22;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes teddyBearPop {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Discover Your Food Personality!</h1>
+    <div id="quiz">
+      <div class="question">
+        <h2 id="question-text">What’s your ideal weekend activity?</h2>
+        <div class="options">
+          <button class="option" data-value="adventurous">Hiking in the mountains</button>
+          <button class="option" data-value="classic">Reading a book</button>
+          <button class="option" data-value="exotic">Trying a new restaurant</button>
+          <button class="option" data-value="comfort">Binge-watching TV shows</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result Page -->
+    <div id="result" class="hidden">
+      <h2>Your Food Personality:</h2>
+      <p id="result-text"></p>
+      <div id="teddy-bear">
+        <img src="https://www.bing.com/th/id/OGC.4e999a51b846d24c7b86cf5a08814a19?pid=1.7&rurl=https%3a%2f%2fi.pinimg.com%2foriginals%2f6a%2fc7%2fab%2f6ac7abdb5931223f0ac04271f757a87b.gif&ehk=k1rKJyLPvWIFecgzFlyNvT90hzHWnjET1qgSGlEM4ts%3d" alt="Cute Teddy Bear">
+      </div>
+      <div id="boom-container"></div>
+      <button id="restart-btn">Take Quiz Again</button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript Code
+    const questions = [
+      {
+        question: "What’s your ideal weekend activity?",
+        options: {
+          adventurous: "Hiking in the mountains",
+          classic: "Reading a book",
+          exotic: "Trying a new restaurant",
+          comfort: "Binge-watching TV shows",
+        },
+      },
+      {
+        question: "What’s your favorite type of cuisine?",
+        options: {
+          adventurous: "Spicy Mexican",
+          classic: "Traditional Italian",
+          exotic: "Sushi",
+          comfort: "Mac and Cheese",
+        },
+      },
+      {
+        question: "What describes your dining vibe?",
+        options: {
+          adventurous: "Outdoor adventure picnic",
+          classic: "Candlelit dinner",
+          exotic: "Street food exploration",
+          comfort: "Takeout at home",
+        },
+      },
+    ];
+
+    const results = {
+      adventurous: "You're an Adventurous Eater! Try our fiery Chicken Tacos or Sushi Platter.",
+      classic: "You're a Classic Foodie! You might enjoy Margherita Pizza or Caesar Salad.",
+      exotic: "You're an Exotic Food Explorer! Check out Pad Thai or BBQ Ribs.",
+      comfort: "You're a Comfort Food Lover! Pancakes with Maple Syrup or Vegan Burger are perfect for you.",
+    };
+
+    let currentQuestion = 0;
+    let personalityScores = { adventurous: 0, classic: 0, exotic: 0, comfort: 0 };
+
+    const quizElement = document.getElementById("quiz");
+    const resultElement = document.getElementById("result");
+    const questionText = document.getElementById("question-text");
+    const restartButton = document.getElementById("restart-btn");
+    const resultText = document.getElementById("result-text");
+    const boomContainer = document.getElementById("boom-container");
+
+    function showQuestion(index) {
+      const question = questions[index];
+      questionText.innerText = question.question;
+      const options = document.querySelectorAll(".option");
+
+      options.forEach(option => {
+        const value = option.dataset.value;
+        option.innerText = question.options[value];
+        option.onclick = () => {
+          personalityScores[value]++;
+          if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+          } else {
+            showResult();
+          }
+        };
+      });
+    }
+
+    function showResult() {
+      quizElement.classList.add("hidden");
+      resultElement.classList.remove("hidden");
+
+      let maxPersonality = Object.keys(personalityScores).reduce((a, b) => personalityScores[a] > personalityScores[b] ? a : b);
+
+      resultText.innerText = results[maxPersonality];
+
+      // Add boom effect
+      const boomEffect = document.createElement("div");
+      boomEffect.classList.add("boom-effect");
+      boomContainer.appendChild(boomEffect);
+
+      // Play explosion sound
+      const audio = new Audio("https://www.soundjay.com/button/sounds/button-16.mp3");
+      audio.play();
+
+      // Remove boom effect after animation
+      setTimeout(() => boomEffect.remove(), 1000);
+    }
+
+    restartButton.onclick = () => {
+      personalityScores = { adventurous: 0, classic: 0, exotic: 0, comfort: 0 };
+      currentQuestion = 0;
+      resultElement.classList.add("hidden");
+      quizElement.classList.remove("hidden");
+      showQuestion(currentQuestion);
+    };
+
+    showQuestion(currentQuestion);
+  </script>
+</body>
+</html>

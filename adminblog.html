@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Blog</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <style>
+    body {
+     
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    /* Blog Post and Form Section Styles */
+    #blog-form-section, #existing-blogs {
+        background-color: rgba(56, 54, 54, 0.6); /* Darkened the grey color */
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        border-radius: 10px;
+    }
+    
+    #blog-form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    #blog-form input, #blog-form textarea, #blog-form button {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: none;
+        border-radius: 5px;
+    }
+    
+    #blog-form button {
+        background-color: #28a745;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        padding: 8px 16px;
+        width: auto;
+        max-width: 120px;
+    }
+    
+    /* Styling for Blog Posts */
+    .blog-post {
+        background-color: rgba(30, 30, 30, 0.85); /* Darkened blog boxes */
+        color: #fff;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .blog-post:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .blog-post h3 {
+        margin-top: 0;
+    }
+    
+    .update-btn, .delete-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: auto;
+        max-width: 100px;
+    }
+    
+    .update-btn {
+        background-color: #007bff;
+        color: #fff;
+    }
+    
+    .delete-btn {
+        background-color: #dc3545;
+        color: #fff;
+    }
+    
+    /* Admin Blog Post Section */
+#admin-blog-post-title {
+    background-color: #ff6f3c;
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            margin-left: 14px;
+            margin-right: 14px;
+            margin-top: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+</style>    
+</head>
+<body>
+
+    <!-- Page Header -->
+    <div id="admin-blog-post-title">
+        <h1> Admin Panel : Add Blogs</h1>
+    </div>
+    
+   
+
+    <!-- Blog Form Section -->
+    <section id="blog-form-section">
+        <form id="blog-form">
+            <div>
+                <label for="title">Blog Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>
+                <label for="description">Blog Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div>
+                <label for="image-url">Image URL:</label>
+                <input type="url" id="image-url" name="image-url" required>
+            </div>
+            <div>
+                <label for="video-link">Video Link:</label>
+                <input type="url" id="video-link" name="video-link" required>
+            </div>
+            <button type="submit">Post Blog</button>
+        </form>
+    </section>
+
+    <!-- Existing Blogs Section -->
+    <section id="existing-blogs">
+        <h2>Manage Blogs</h2>
+        <div id="blog-list"></div>
+    </section>
+
+ 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const blogForm = document.getElementById("blog-form");
+            const blogList = document.getElementById("blog-list");
+
+            const loadBlogs = () => {
+                const blogPosts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+                blogList.innerHTML = blogPosts.length
+                    ? blogPosts.map((post, index) => `
+                        <div class="blog-post">
+                            <h3>${post.title}</h3>
+                            <p>${post.description}</p>
+                            <img src="${post.imageUrl}" alt="${post.title}">
+                            <p><a href="${post.videoLink}" target="_blank">Watch Video</a></p>
+                            <button class="update-btn" data-index="${index}">Update</button>
+                            <button class="delete-btn" data-index="${index}">Delete</button>
+                        </div>
+                    `).join("")
+                    : "<p>No blogs to manage.</p>";
+
+                document.querySelectorAll(".delete-btn").forEach(button => {
+                    button.addEventListener("click", () => {
+                        const index = button.dataset.index;
+                        blogPosts.splice(index, 1);
+                        localStorage.setItem("blogPosts", JSON.stringify(blogPosts));
+                        alert("Blog deleted successfully!");
+                        loadBlogs();
+                    });
+                });
+
+                document.querySelectorAll(".update-btn").forEach(button => {
+                    button.addEventListener("click", () => {
+                        const index = button.dataset.index;
+                        const updatedTitle = prompt("Update Title:", blogPosts[index].title);
+                        const updatedDescription = prompt("Update Description:", blogPosts[index].description);
+                        const updatedImageUrl = prompt("Update Image URL:", blogPosts[index].imageUrl);
+                        const updatedVideoLink = prompt("Update Video Link:", blogPosts[index].videoLink);
+
+                        if (updatedTitle && updatedDescription && updatedImageUrl && updatedVideoLink) {
+                            blogPosts[index] = { 
+                                title: updatedTitle, 
+                                description: updatedDescription, 
+                                imageUrl: updatedImageUrl, 
+                                videoLink: updatedVideoLink 
+                            };
+                            localStorage.setItem("blogPosts", JSON.stringify(blogPosts));
+                            alert("Blog updated successfully!");
+                            loadBlogs();
+                        }
+                    });
+                });
+            };
+
+            blogForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const title = document.getElementById("title").value;
+                const description = document.getElementById("description").value;
+                const imageUrl = document.getElementById("image-url").value;
+                const videoLink = document.getElementById("video-link").value;
+
+                const blogPosts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+                blogPosts.push({ title, description, imageUrl, videoLink });
+                localStorage.setItem("blogPosts", JSON.stringify(blogPosts));
+                alert("Blog posted successfully!");
+                blogForm.reset();
+                loadBlogs();
+            });
+
+            loadBlogs();
+        });
+    </script>
+</body>
+</html>

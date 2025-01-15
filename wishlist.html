@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            background-image: url('https://images7.alphacoders.com/101/1017384.jpg');
+        }
+
+        header {
+            background: transparent;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        header nav a {
+            text-decoration: none;
+            color: white;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Wishlist Container */
+        .wishlist-container {
+            padding: 20px;
+        }
+
+        .wishlist-heading {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .wishlist-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .wishlist-item {
+            color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 250px;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .wishlist-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .wishlist-item h3 {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        .wishlist-item .price {
+            font-size: 18px;
+            color: #ff6600;
+            margin: 5px 0;
+        }
+
+        .wishlist-item button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .wishlist-item button:hover {
+            background-color: #e65c00;
+        }
+
+        /* Empty Wishlist Message */
+        .empty-wishlist {
+            text-align: center;
+            font-size: 32px;
+            color: #ffffff;
+            margin-top: 50px;
+        }
+        .navbar {
+            margin-right: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="homepage.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="checkout.html">Checkout</a>
+            <a href="events.html">Events</a>
+            <a href="blog.html">Blogs</a>
+            <a href="reviews.html">Reviews</a>
+        </nav>
+    </header>
+
+    <div class="wishlist-container">
+        <h1 class="wishlist-heading">Your Wishlist</h1>
+        <div id="wishlist-items" class="wishlist-items"></div>
+        <p id="empty-message" class="empty-wishlist" style="display: none;">Your wishlist is empty. Start adding items!</p>
+    </div>
+
+    <script>
+        const apiUrl = 'http://localhost:8008/wishlist'; // Backend API for wishlist
+
+        // Fetch wishlist from backend and display it
+        async function fetchWishlist() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Failed to fetch wishlist');
+                const wishlist = await response.json();
+                displayWishlist(wishlist);
+            } catch (error) {
+                console.error('Failed to fetch wishlist:', error);
+            }
+        }
+
+        // Display the wishlist items
+        function displayWishlist(wishlist) {
+            const container = document.getElementById('wishlist-items');
+            const emptyMessage = document.getElementById('empty-message');
+            container.innerHTML = '';
+
+            if (wishlist.length === 0) {
+                emptyMessage.style.display = 'block';
+            } else {
+                emptyMessage.style.display = 'none';
+                wishlist.forEach(item => {
+                    container.innerHTML += `
+                        <div class="wishlist-item">
+                            <img src="${item.image || 'default-image.jpg'}" alt="${item.name}">
+                            <h3>${item.name}</h3>
+                            <p class="price">₹${item.price}</p>
+                            <button onclick="removeFromWishlist(${item.id})">Remove</button>
+                            
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        // Move to checkout
+        async function moveToCheckout(productId) {
+            try {
+                const response = await fetch(`${apiUrl}/${productId}`); // Fetch product details
+                if (!response.ok) throw new Error('Failed to fetch product details');
+                
+                const product = await response.json();
+                console.log('Product fetched:', product);  // Debugging line to see the product
+
+                // Save the product to local storage (or session storage)
+                localStorage.setItem('checkoutProduct', JSON.stringify(product));
+
+                // Redirect to checkout page
+                window.location.href = 'checkout.html';
+            } catch (error) {
+                console.error('Failed to fetch product details:', error);
+                alert('Error moving item to checkout. Please try again.');
+            }
+        }
+
+        // Remove item from wishlist
+        async function removeFromWishlist(id) {
+            try {
+                const response = await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+                if (!response.ok) throw new Error('Failed to remove item from wishlist');
+                await fetchWishlist();
+            } catch (error) {
+                console.error('Failed to remove from wishlist:', error);
+            }
+        }
+
+        // Initial fetch of wishlist
+        fetchWishlist();
+    </script>
+</body>
+</html>

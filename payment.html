@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/1.0.1/balloon.min.css"></script> <!-- For balloon effect -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"> <!-- For animations -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
+
+        .payment-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .payment-button {
+            padding: 15px 40px;
+            background-color: #28a745;
+            color: white;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .payment-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .timer {
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 30px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .video-container {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .message {
+            display: none;
+            font-size: 32px;
+            font-weight: bold;
+            color: #FF6347;
+            margin-top: 20px;
+            animation: fadeIn 2s forwards;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            animation: balloonAnimation 6s linear infinite;
+            font-size: 30px;
+        }
+
+        .emoji {
+            font-size: 50px;
+            margin: 10px;
+            animation: emojiAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes balloonAnimation {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
+        }
+
+        @keyframes emojiAnimation {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-20px); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Complete Your Payment</h1>
+    <div class="payment-container">
+        <button id="payment-button" class="payment-button">Pay with Razorpay</button>
+    </div>
+
+    <div class="timer" id="timer"></div>
+
+    <div class="video-container" id="video-container">
+        <video id="video" width="640" controls>
+            <source src="https://drive.google.com/uc?id=18hq57SMQEeqSOiesRu8-xzaibR-q6LKO" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="message" id="message">Your food is ready! 🍔🍕🍟</div>
+
+    <!-- Food Emoji Animation -->
+    <div class="emoji">🍔</div>
+    <div class="emoji">🍕</div>
+    <div class="emoji">🍟</div>
+    <div class="emoji">🍣</div>
+    <div class="emoji">🍩</div>
+   
+
+    <script>
+        // Get the total amount from sessionStorage
+        const totalAmount = parseFloat(sessionStorage.getItem('totalAmount')) || 0;
+
+        if (!totalAmount) {
+            alert("Total amount not found!");
+            window.location.href = "checkout.html"; // Redirect back to the checkout page if amount is not found
+        }
+
+        // Razorpay payment integration
+        const razorpayKeyId = 'rzp_test_Is0N4FzdtzQ5Y8';
+
+        document.getElementById('payment-button').onclick = function (e) {
+            e.preventDefault();
+
+            const options = {
+                key: razorpayKeyId,
+                amount: totalAmount * 100, // Convert to paise
+                currency: "INR",
+                name: "FlavourJet",
+                description: "Order Payment",
+                handler: function (response) {
+                    alert("Payment Successful! Transaction ID: " + response.razorpay_payment_id);
+                    startCountdown();
+                },
+                prefill: {
+                    name: "Customer Name",
+                    email: "customer@example.com",
+                    contact: "9876543210"
+                },
+                theme: {
+                    color: "#28a745"
+                }
+            };
+
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        };
+
+        // Countdown timer for 10 minutes
+        let countdownTime = 10 * 60; // 10 minutes in seconds
+        const timerElement = document.getElementById('timer');
+
+        function startCountdown() {
+            // Show "Your food is being prepared..." immediately after payment
+            showMessage("Your food is being prepared.🍔🍕🍟..");
+
+            const countdownInterval = setInterval(() => {
+                const minutes = Math.floor(countdownTime / 60);
+                const seconds = countdownTime % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (countdownTime <= 0) {
+                    clearInterval(countdownInterval);
+                    displayVideo();
+                }
+
+                countdownTime--;
+            }, 1000);
+
+            // Show "Your food is cooked!" after 4 minutes
+            setTimeout(() => {
+                alert("Your food is cooked!🍔🍕🍟");
+            }, 4 * 60 * 1000); // 4 minutes in milliseconds
+
+            // Show "Your food is ready!" in the last second
+            setTimeout(() => {
+                showMessage("Your food is ready! 🍔🍕🍟");
+            }, 10 * 60 * 1000 - 1000); // Last second (10 minutes)
+        }
+
+     
+
+        // Function to display a message
+        function showMessage(message) {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = message;
+            messageElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

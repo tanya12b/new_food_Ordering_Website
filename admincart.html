@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #ff6f3c;
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+            display: grid;
+            grid-gap: 15px;
+        }
+
+        .redirect {
+            position: fixed;
+            /* Fixed position to make it stand out */
+            bottom: 20px;
+            /* Position at the bottom */
+            right: 20px;
+            /* Position to the right */
+            z-index: 1000;
+            /* Ensure it stays above other elements */
+        }
+
+        .redirect button {
+            background-color: #ff6f3c;
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            /* Rounded shape */
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .redirect button:hover {
+            background-color: #ff4e1f;
+            transform: scale(1.05) translateY(-5px);
+            /* Wavy hover effect */
+        }
+
+        .redirect button:active {
+            transform: scale(1) translateY(0);
+            /* Reset on click */
+        }
+
+        label {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="url"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            transition: border 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="url"]:focus {
+            border-color: #ff6f3c;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff6f3c;
+            color: #fff;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff4e1f;
+        }
+
+        button.clicked {
+            background-color: #008000;
+            /* Green color */
+            cursor: not-allowed;
+            /* Optional */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Admin Panel: Add Menu Item</h1>
+    </header>
+
+    <form id="add-menu-item-form">
+        <label for="menu-item-name">Menu Item Name:</label>
+        <input type="text" id="menu-item-name" name="name" required>
+
+        <label for="menu-item-price">Menu Item Price:</label>
+        <input type="number" id="menu-item-price" name="price" required>
+
+        <label for="menu-item-calories">Calories:</label>
+        <input type="number" id="menu-item-calories" name="calories" required>
+
+        <label for="menu-item-protein">Protein (g):</label>
+        <input type="number" id="menu-item-protein" name="protein" required>
+
+        <label for="menu-item-carbs">Carbohydrates (g):</label>
+        <input type="number" id="menu-item-carbs" name="carbs" required>
+
+        <label for="menu-item-fats">Fats (g):</label>
+        <input type="number" id="menu-item-fats" name="fats" required>
+
+        <label for="menu-item-image">Image URL:</label>
+        <input type="url" id="menu-item-image" name="image" required>
+
+
+        <label for="menu-item-tagline">Menu Item Tagline:</label>
+        <input type="text" id="menu-item-tagline" name="tagline" required>
+
+        <button type="submit">Add Menu Item</button>
+    </form>
+    <div class="redirect">
+        <button onclick="window.location.href='cart.html'">Go to Cart Page</button>
+    </div>
+    <script>
+        console.log("hello");
+        const form = document.getElementById('add-menu-item-form');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const button = e.target.querySelector('button');
+            button.classList.add('clicked'); // Apply the "clicked" CSS class
+            button.disabled = true; // Optional: Disable the button during processing
+
+            const newItem = {
+                id: Date.now(),
+                name: document.getElementById('menu-item-name').value,
+                price: document.getElementById('menu-item-price').value,
+                image: document.getElementById('menu-item-image').value,
+                tagline: document.getElementById('menu-item-tagline').value, // Added tagline
+                nutrition: {
+                    calories: document.getElementById('menu-item-calories').value,
+                    protein: document.getElementById('menu-item-protein').value,
+                    carbohydrates: document.getElementById('menu-item-carbs').value,
+                    fat: document.getElementById('menu-item-fats').value,
+                },
+            };
+
+            fetch('http://localhost:8008/admin/add-menu-item', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newItem),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    form.reset();
+                    button.classList.remove('clicked'); // Reset button color after success
+                    button.disabled = false; // Re-enable the button
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    button.classList.remove('clicked'); // Reset button color after failure
+                    button.disabled = false; // Re-enable the button
+                });
+        });
+    </script>
+</body>
+
+</html>

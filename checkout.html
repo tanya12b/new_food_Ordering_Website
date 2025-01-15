@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - FlavourJet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+        }
+
+        .checkout-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .checkout-item h2 {
+            margin: 0;
+        }
+
+        .checkout-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .update-button,
+        .remove-button {
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .update-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .update-button:hover {
+            background-color: #218838;
+        }
+
+        .remove-button {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .remove-button:hover {
+            background-color: #ff1a1a;
+        }
+
+        .total {
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .recommended-items {
+            margin-top: 30px;
+        }
+
+        .recommended-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .recommended-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            text-align: center;
+        }
+
+        .recommended-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        footer .col {
+            width: 20%;
+            margin: 20px 0;
+        }
+
+        footer .col h4 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        footer .col a {
+            color: #000000;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+
+        footer .col .icon i {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        footer .col .install img {
+            width: 120px;
+            margin-right: 15px;
+        }
+
+        footer .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        footer {
+            background: #f9f6f6;
+            color: #000000;
+            padding: 60px 0;
+        }
+
+        .add-to-cart-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #0056b3;
+        }
+
+        .discount-message {
+            background-color: #ffeb3b;
+            color: #333;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <h1>Your Checkout</h1>
+
+    <!-- Cart Section -->
+    <div id="cart"></div>
+    <div class="discount-message" id="discount-message">
+        <p>Spend ₹1000 or more to get a 5% discount on your order!</p>
+    </div>
+
+    <!-- Total Price Section -->
+    <div class="total">
+        <p>Total: ₹<span id="totalPrice">0</span></p>
+        <p>Discount Applied: ₹<span id="discountPrice">0</span></p>
+        <p>Final Total: ₹<span id="finalTotal">0</span></p>
+
+    </div>
+    <!-- Pay Now Button -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button id="pay-now-button"
+            style="background-color: #28a745; color: white; padding: 10px 20px; font-size: 18px; border: none; border-radius: 5px; cursor: pointer;">
+            Pay Now
+        </button>
+    </div>
+    </div>
+    
+
+    <script>
+        // Redirect to payment.html with the total amount
+        document.getElementById('pay-now-button').addEventListener('click', function () {
+            const finalTotal = document.getElementById('finalTotal').textContent;
+            sessionStorage.setItem('totalAmount', finalTotal); // Store final total in sessionStorage
+            window.location.href = 'payment.html'; // Redirect to payment page
+        });
+    </script>
+
+    <!-- Recommended Items Section -->
+    <div id="recommended-items" class="recommended-items">
+        <h2>Recommended Items</h2>
+        <div id="recommended-list" class="recommended-list"></div>
+    </div>
+    <footer id="footer">
+        <div class="footer-container">
+          <div class="col">
+    
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> Chitkara University</p>
+            <p><strong>Phone:</strong> (+91) 01 2345 6789</p>
+    
+            <div class="follow">
+              <h4>Follow us</h4>
+              <div class="icon">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-pinterest-p"></i>
+                <i class="fab fa-youtube"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+          </div>
+          <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+          </div>
+          <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+              <img src="image/app.jpg" alt="App Store">
+              <img src="image/play.jpg" alt="Google Play">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="image/pay.png" alt="Payment Gateways">
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; <span id="currentYear"></span> All rights reserved | Made with <i class="fas fa-heart"></i> by
+            Team</p>
+        </div>
+      </footer>
+
+    <script>
+        // Fetch cart data
+        function fetchCart() {
+            fetch('http://localhost:8008/api/cart')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch cart data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.items) {
+                        renderCart(data);
+                    } else {
+                        console.error('Cart data is empty or malformed');
+                    }
+                })
+                .catch(error => console.error('Error fetching cart:', error));
+        }
+        function fetchProducts() {
+            fetch('http://localhost:8008/api/cartread') // Ensure correct URL
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch cart data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.items) {
+                        renderCart(data);
+                    } else {
+                        console.error('Cart data is empty or malformed');
+                    }
+                })
+                .catch(error => console.error('Error fetching cart:', error));
+        }
+        
+        // Render cart items
+        function renderCart(data) {
+            const cartDiv = document.getElementById('cart');
+            let totalPrice = 0;
+
+            cartDiv.innerHTML = '';
+            if (data.items && data.items.length > 0) {
+                data.items.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('checkout-item');
+                    itemDiv.innerHTML = `
+                        <div class="item-info">
+                            <img src="${item.product.image}" alt="${item.product.name}">
+                            <div>
+                                <h2>${item.product.name}</h2>
+                                <p>₹${item.product.price} x 
+                                    <input type="number" value="${item.quantity}" min="0" id="quantity-${item.productId}">
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>₹${item.product.price * item.quantity}</p>
+                            <button class="update-button" onclick="updateQuantity(${item.productId})">Update</button>
+                            <button class="remove-button" onclick="removeItem(${item.productId})">Remove</button>
+                        </div>
+                    `;
+                    cartDiv.appendChild(itemDiv);
+                    totalPrice += item.product.price * item.quantity;
+                });
+
+                document.getElementById('totalPrice').textContent = totalPrice;
+                applyDiscount(totalPrice);
+            } else {
+                cartDiv.innerHTML = '<p>No items in the cart.</p>';
+            }
+        }
+
+        // Remove item
+        function removeItem(productId) {
+            fetch('http://localhost:8008/api/cart/remove', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ productId }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to remove item from cart');
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    fetchCart();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Update quantity
+        function updateQuantity(productId) {
+            const quantity = parseInt(document.getElementById(`quantity-${productId}`).value);
+
+            fetch('http://localhost:8008/api/cart/update', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ productId, quantity }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to update item quantity');
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    fetchCart();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Apply discount
+        function applyDiscount(totalPrice) {
+            let discountAmount = 0;
+
+            if (totalPrice > 2000) {
+                discountAmount = totalPrice * 0.10;
+            } else if (totalPrice > 1000) {
+                discountAmount = totalPrice * 0.05;
+            }
+
+            const finalTotal = totalPrice - discountAmount;
+
+            document.getElementById('discountPrice').textContent = discountAmount.toFixed(2);
+            document.getElementById('finalTotal').textContent = finalTotal.toFixed(2);
+            const discountMessage = document.getElementById('discount-message');
+            if (totalPrice < 1000) {
+                discountMessage.style.display = 'block';
+            } else {
+                discountMessage.style.display = 'none';
+            }
+        }
+        // Fetch recommended items
+        function fetchRecommendedProducts() {
+            fetch('http://localhost:8008/api/product')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch recommended products');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    renderRecommendedItems(data);
+                })
+                .catch(error => console.error('Error fetching recommended products:', error));
+        }
+
+        // Render recommended items
+        function renderRecommendedItems(products) {
+            const recommendedDiv = document.getElementById('recommended-list');
+            recommendedDiv.innerHTML = '';
+
+            if (products && products.length > 0) {
+                products.slice(0, 5).forEach(product => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('recommended-item');
+                    itemDiv.innerHTML = `
+                        <div>
+                            <img src="${product.image}" alt="${product.name}">
+                            <h2>${product.name}</h2>
+                            <p>₹${product.price}</p>
+                            <button class="add-to-cart-button" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
+                    `;
+                    recommendedDiv.appendChild(itemDiv);
+                });
+            } else {
+                recommendedDiv.innerHTML = '<p>No recommended items available.</p>';
+            }
+        }
+        // Add item to cart
+        function addToCart(productId) {
+            fetch('http://localhost:8008/api/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ productId, quantity: 1 }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to add item to cart');
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    fetchCart();
+                })
+                .catch(error => console.error('Error adding to cart:', error));
+        }
+
+        function addToCartkhana(productId) {
+            fetch('http://localhost:8008/api/cart/addkhana', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ productId, quantity: 1 }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to add item to cart');
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    fetchCart();
+                })
+                .catch(error => console.error('Error adding to cart:', error));
+        }
+
+        // wishlisted products
+
+        // Fetch and display wishlist items
+        function fetchWishlist() {
+            fetch('http://localhost:8008/api/wishlist')
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch wishlist');
+                    return response.json();
+                })
+                .then(data => {
+                    renderWishlist(data);
+                })
+                .catch(error => console.error('Error fetching wishlist:', error));
+        }
+
+        // Render wishlist items
+        function renderWishlist(items) {
+            if (items.length > 0) {
+                items.forEach(item => addItemToCart(item));
+            }
+        }
+        // Add wishlisted item to cart
+        function moveItemToCheckout(productId) {
+            fetch(`http://localhost:8008/api/wishlist/move`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ productId }),
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to move item');
+                    return response.json();
+                })
+                .then(() => fetchCart())
+                .catch(error => console.error('Error moving item to cart:', error));
+        }
+        // Initial data fetch
+        fetchWishlist();
+        fetchCart();
+        fetchRecommendedProducts();
+        fetchProducts();
+    </script>
+</body>
+
+</html>
